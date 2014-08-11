@@ -1,4 +1,4 @@
-# Metova::Carrierwave
+# Metova Carrierwave
 
 Metova Carrierwave configures Carrierwave to use Amazon S3 by inspecting `ENV` for your S3 configuration options.
 
