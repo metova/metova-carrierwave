@@ -4,7 +4,6 @@ require 'carrierwave'
 module Metova
   module Carrierwave
     class Railtie < ::Rails::Railtie
-
       initializer "metova.carrierwave" do |_|
 
         if ENV['AWS_S3_BUCKET_NAME'] && ENV['AWS_S3_ACCESS_KEY_ID'] && ENV['AWS_S3_SECRET_ACCESS_KEY']
@@ -28,6 +27,7 @@ module Metova
           end
         end
 
+      end
     end
   end
 end
