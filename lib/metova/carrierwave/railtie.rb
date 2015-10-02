@@ -8,7 +8,7 @@ module Metova
 
         if ENV['AWS_S3_BUCKET_NAME'] && ENV['AWS_S3_ACCESS_KEY_ID'] && ENV['AWS_S3_SECRET_ACCESS_KEY']
           CarrierWave.configure do |config|
-            config.storage = :fog
+            config.storage = 'fog/aws'
             config.fog_directory = ENV['AWS_S3_BUCKET_NAME']
             config.fog_public = true
             config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }
