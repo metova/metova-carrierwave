@@ -8,25 +8,25 @@ module Metova
 
         if ENV['AWS_S3_BUCKET_NAME'] && ENV['AWS_S3_ACCESS_KEY_ID'] && ENV['AWS_S3_SECRET_ACCESS_KEY']
           CarrierWave.configure do |config|
-            config.storage = 'fog/aws'
+            config.storage = :fog
             config.fog_directory = ENV['AWS_S3_BUCKET_NAME']
             config.fog_public = true
             config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }
             config.fog_credentials = {
               provider: 'AWS',
               aws_access_key_id: ENV['AWS_S3_ACCESS_KEY_ID'],
-              aws_secret_access_key: ENV['AWS_S3_SECRET_ACCESS_KEY']
+              aws_secret_access_key: ENV['AWS_S3_SECRET_ACCESS_KEY'],
+              region: ENV.fetch('AWS_S3_REGION', 'us-east-1')
             }
           end
         end
 
-        if Rails.env.test? or Rails.env.cucumber?
+        if Rails.env.test? || Rails.env.cucumber?
           CarrierWave.configure do |config|
             config.storage = :file
             config.enable_processing = false
           end
         end
-
       end
     end
   end
